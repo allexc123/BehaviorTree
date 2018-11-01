@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	
+	<extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="com.mm.menu.command"
+            name="GenerateFormCode">
+      </command>
+   </extension>
+ 
+    <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="com.mm.menu.command"
+               icon="icons/sample.png"
+               label="生成代码"
+               style="push">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="selection">
+                        <iterate ifEmpty="false"> <!-- 如果不设置ifEmpty属性，当没有选择任何元素时，改表达式返回true -->
+                        	<adapt
+                               type="org.eclipse.core.resources.IResource">
+                               <test
+                                     property="org.eclipse.core.resources.name" value="*.java">
+                               </test>
+                        	</adapt>
+                        </iterate>
+                  </with>
+               </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.mm.behaviortree.handlers.SampleHandler"
+            commandId="com.mm.menu.command">
+      </handler>
+   </extension>
+</plugin>
