@@ -1,5 +1,7 @@
 package com.mm.behaviortree.handlers;
 
+import java.io.File;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -9,21 +11,40 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
+
+import com.mm.behaviortree.module.ModuleDialog;
+
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.widgets.Shell;
 
 public class SampleHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		getSelectPath();
+		String path = null;
+		String selectPath = getSelectPath();
+		File file = new File(selectPath);
+		path = file.getAbsolutePath();
+		if(file.isFile()) {
+			path = file.getParent();
+		}
+		System.out.println(path);
 		
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-		MessageDialog.openInformation(
-				window.getShell(),
-				"BehaviorTree",
-				"Hello, Eclipse world");
+		Shell shell = window.getShell();
+		ModuleDialog dialog = new ModuleDialog(shell, path);
+		if(dialog.open() !=  InputDialog.OK) {
+			System.out.println("失败");
+		}
+		
+		
+//		MessageDialog.openInformation( 
+//				window.getShell(),
+//				"BehaviorTree",
+//				"Hello, Eclipse world");
 		return null;
 	}
 	private String getSelectPath(){
@@ -47,7 +68,7 @@ public class SampleHandler extends AbstractHandler {
 				path = path.substring(1);
 			}
 		}
-		System.out.println(path);
 		return path;
 	}
+	
 }
