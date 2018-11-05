@@ -49,6 +49,7 @@
          <editor 
          	id="com.mm.behaviortree.ui.DiagramEditor"
          	class="com.mm.behaviortree.ui.DiagramEditor"
+         	contributorClass="com.mm.behaviortree.actions.DiagramActionBarContributor"
          	default="false"
          	name="Diagram Editor">
          </editor>
