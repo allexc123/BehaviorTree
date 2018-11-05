@@ -44,4 +44,14 @@
             commandId="com.mm.menu.command">
       </handler>
    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+         <editor 
+         	id="com.mm.behaviortree.ui.DiagramEditor"
+         	class="com.mm.behaviortree.ui.DiagramEditor"
+         	default="false"
+         	name="Diagram Editor">
+         </editor>
+         
+   </extension>
 </plugin>
