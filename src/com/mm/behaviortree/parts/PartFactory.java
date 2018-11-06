@@ -5,6 +5,7 @@ import org.eclipse.gef.EditPartFactory;
 
 import com.mm.behaviortree.model.ContentsModel;
 import com.mm.behaviortree.model.HelloModel;
+import com.mm.behaviortree.model.LineConnectionModel;
 
 public class PartFactory implements EditPartFactory {
 
@@ -20,6 +21,8 @@ public class PartFactory implements EditPartFactory {
 			return new HelloEditorPart();
 		}else if(modelElement instanceof ContentsModel) {
 			return new ContentsEditPart();
+		}else if(modelElement instanceof LineConnectionModel) {
+			return new LineConnectionEditPart();
 		}
 		
 		throw new RuntimeException("Can't create part  from model element");

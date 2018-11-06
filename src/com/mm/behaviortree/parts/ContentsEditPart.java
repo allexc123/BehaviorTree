@@ -1,5 +1,6 @@
 package com.mm.behaviortree.parts;
 
+import java.beans.PropertyChangeEvent;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -12,7 +13,7 @@ import com.mm.behaviortree.model.ContentsModel;
 import com.mm.behaviortree.policy.CustomXYLayoutEditPolicy;
 
 
-public class ContentsEditPart extends AbstractGraphicalEditPart {
+public class ContentsEditPart extends EditPartWithListener {
 
 	@Override
 	protected IFigure createFigure() {
@@ -32,6 +33,14 @@ public class ContentsEditPart extends AbstractGraphicalEditPart {
 	protected List getModelChildren() {
 		
 		return ((ContentsModel)getModel()).getChildren();
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if(evt.getPropertyName().equals(ContentsModel.P_CHILDREN)) {
+			//因为子模型改变，要刷新子模型的EditPart显示其变化
+			refreshChildren();
+		}
 	}
 
 	

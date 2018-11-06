@@ -47,11 +47,14 @@
    <extension
          point="org.eclipse.ui.editors">
          <editor 
-         	id="com.mm.behaviortree.ui.DiagramEditor"
          	class="com.mm.behaviortree.ui.DiagramEditor"
          	contributorClass="com.mm.behaviortree.actions.DiagramActionBarContributor"
+         	
+         	id="com.mm.behaviortree.ui.DiagramEditor"
+         	icon="icons/sample.png"
          	default="false"
-         	name="Diagram Editor">
+         	name="Diagram Editor"
+         	extensions="diagram">
          </editor>
          
    </extension>

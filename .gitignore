@@ -1,8 +1,9 @@
 [plain] view plaincopy
 #过滤文件
 .project
-.Ds_Store
+.Ds_Stor
 
 #过滤文件夹
 target/
 .settings/
+bin/

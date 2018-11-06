@@ -52,16 +52,25 @@ public class SampleHandler extends AbstractHandler {
 //				"BehaviorTree",
 //				"Hello, Eclipse world");
 		
-		String path = optenFileDialog();
-		if(path != null) {
-			IEditorInput input = new DiagramEditorInput(new Path(path));
-            IWorkbenchPage page = window.getActivePage();
-            try{
-                page.openEditor(input, "com.mm.behaviortree.ui.DiagramEditor",true);
-            }catch(Exception e){
-                System.err.println(e);
-            }
-		}
+		String path = getSelectPath();
+		IEditorInput input = new DiagramEditorInput(new Path(path));
+        IWorkbenchPage page = window.getActivePage();
+        try{
+            page.openEditor(input, "com.mm.behaviortree.ui.DiagramEditor",true);
+        }catch(Exception e){
+            System.err.println(e);
+        }
+		
+//		String path = optenFileDialog();
+//		if(path != null) {
+//			IEditorInput input = new DiagramEditorInput(new Path(path));
+//            IWorkbenchPage page = window.getActivePage();
+//            try{
+//                page.openEditor(input, "com.mm.behaviortree.ui.DiagramEditor",true);
+//            }catch(Exception e){
+//                System.err.println(e);
+//            }
+//		}
 		
 		return null;
 	}

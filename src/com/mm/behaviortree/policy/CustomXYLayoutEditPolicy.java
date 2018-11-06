@@ -9,13 +9,27 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 
 import com.mm.behaviortree.commands.ChangeConstranintCommand;
+import com.mm.behaviortree.commands.CreateCommand;
+import com.mm.behaviortree.model.HelloModel;
 
 public class CustomXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	@Override
-	protected Command getCreateCommand(CreateRequest arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	protected Command getCreateCommand(CreateRequest request) {
+		CreateCommand command = new CreateCommand();
+		// 产生创建图形的尺寸和位置
+		Rectangle constraint = (Rectangle) getConstraintFor(request);
+		
+		// 获得新创建的图形
+		HelloModel model = (HelloModel) request.getNewObject();
+		// 为该图形设置前面获得的位置和尺寸
+		model.setConstaint(constraint);
+		// 将新创建的图形添加到模型中，
+		// 因为我们在第 2 页的(2)中已经把模型更改和它们的 Editpart 联系起来， 
+		// 因此，Graphical Editor 中的图形也会发生变化
+		command.setContentsModel(getHost().getModel());
+		command.setHelloModel(model);
+		return command;
 	}
 
 	@Override
