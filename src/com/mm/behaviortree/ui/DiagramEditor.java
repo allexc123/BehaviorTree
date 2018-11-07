@@ -21,6 +21,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IPathEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -39,11 +40,20 @@ public class DiagramEditor extends GraphicalEditorWithPalette{
 		setEditDomain(new DefaultEditDomain(this));
 	}
 
-	public void init(IEditorSite site, IEditorInput editorInput)throws PartInitException {
-			
-			super.init(site, editorInput);
-		}
 	
+	
+	@Override
+	protected void setInput(IEditorInput input) {
+		// TODO Auto-generated method stub
+		super.setInput(input);
+		System.out.println(input.getName());
+		IPathEditorInput i = (IPathEditorInput) input;
+		
+		System.out.println(i.getPath());
+	}
+
+
+
 	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
@@ -56,7 +66,7 @@ public class DiagramEditor extends GraphicalEditorWithPalette{
 
 	@Override
 	protected void initializeGraphicalViewer() {
-		
+
 		//viewer.setContents(new HelloModel());
 		//设置最上层模型
 		ContentsModel parent = new ContentsModel();

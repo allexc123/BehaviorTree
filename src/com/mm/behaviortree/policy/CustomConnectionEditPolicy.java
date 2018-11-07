@@ -1,4 +1,4 @@
-package com.mm.behaviortree.parts;
+package com.mm.behaviortree.policy;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
@@ -15,5 +15,6 @@ public class CustomConnectionEditPolicy extends ConnectionEditPolicy {
 		
 		return command;
 	}
+	
 
 }

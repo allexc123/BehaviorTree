@@ -15,6 +15,7 @@ import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 
 import com.mm.behaviortree.model.AbstractConnectionModel;
 import com.mm.behaviortree.policy.CustomBendpointEditPolicy;
+import com.mm.behaviortree.policy.CustomConnectionEditPolicy;
 import com.mm.behaviortree.policy.CustomConnectionEndpointEditPolicy;
 
 public class CustomAbstractConnectionEditPart extends AbstractConnectionEditPart implements PropertyChangeListener{

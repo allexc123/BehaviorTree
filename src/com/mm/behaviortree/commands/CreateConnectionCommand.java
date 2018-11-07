@@ -30,6 +30,7 @@ public class CreateConnectionCommand extends Command {
 		//执行的时候分两步:连接起点和连接终点
 		connection.attachSource();
 		connection.attachTarget();
+	
 	}
 
 	public void setConnection(Object model) {

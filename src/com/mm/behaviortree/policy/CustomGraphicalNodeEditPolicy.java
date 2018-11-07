@@ -16,7 +16,6 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 	CreateConnectionCommand command = (CreateConnectionCommand)request.getStartCommand();
 	 	
 	 	command.setTarget(getHost().getModel());
-	 	
 		return command;
 	}
 
@@ -30,6 +29,7 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		 request.setStartCommand(command);
 		return command;
 	}
+	
 
 	@Override
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
