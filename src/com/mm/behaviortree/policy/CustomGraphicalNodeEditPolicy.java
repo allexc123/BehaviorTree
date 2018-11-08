@@ -1,5 +1,7 @@
 	package com.mm.behaviortree.policy;
 
+import org.eclipse.draw2d.Connection;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
@@ -30,6 +32,8 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		return command;
 	}
 	
+
+
 
 	@Override
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {

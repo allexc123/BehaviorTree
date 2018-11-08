@@ -6,6 +6,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gef.SnapToGrid;
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.MarqueeToolEntry;
@@ -16,14 +17,16 @@ import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.requests.SimpleFactory;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
+import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
+import org.eclipse.gef.ui.rulers.RulerComposite;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPathEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -52,12 +55,24 @@ public class DiagramEditor extends GraphicalEditorWithPalette{
 		System.out.println(i.getPath());
 	}
 
+	
+
+	@Override
+	protected void createGraphicalViewer(Composite parent) {
+		RulerComposite rulerComposite = new RulerComposite(parent, SWT.NONE);
+		super.createGraphicalViewer(rulerComposite);
+		rulerComposite.setGraphicalViewer((ScrollingGraphicalViewer)getGraphicalViewer());
+	}
+	
 
 
 	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
 		
+		
+		getGraphicalViewer().setProperty(SnapToGrid.PROPERTY_GRID_ENABLED, true);
+		getGraphicalViewer().setProperty(SnapToGrid.PROPERTY_GRID_VISIBLE, true);
 		 viewer  = getGraphicalViewer();
 		 viewer.setEditPartFactory(new PartFactory());
 	}
